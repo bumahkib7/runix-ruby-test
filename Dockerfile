@@ -12,5 +12,6 @@ WORKDIR /app
 COPY --from=builder /usr/local/bundle /usr/local/bundle
 COPY --from=builder /app .
 USER app
+ENV PORT=4567
 EXPOSE 4567
-CMD ["bundle", "exec", "rackup", "-o", "0.0.0.0", "-p", "4567"]
+CMD ["bundle", "exec", "puma", "-b", "tcp://0.0.0.0:4567"]
